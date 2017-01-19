@@ -26,6 +26,16 @@ abstract class Unit
         return $this->name;
     }
 
+    public function getHp()
+    {
+        return $this->hp;
+    }
+
+    public function setHp($hp)
+    {
+        $this->hp = $hp;
+    }
+
     public function move($direction)
     {
         echo "<p>{$this->name} avanca hacia $direction </p>";
@@ -41,15 +51,30 @@ abstract class Unit
 
 class Solder extends Unit
 {
+    /**
+     * Damage Solder
+     * 
+     * @var integer
+     */
+    protected $damage = 30;
+
     public function attack(Unit $opponent)
     {
         echo "<p> {$this->name} ataca a {$opponent->getName()} </p>";
 
-        // die opponent
-        $opponent->dead();
+        $opponent->setHp($opponent->getHp() -  $this->damage);
+
+        if($opponent->getHp() <= 0){
+            // die opponent
+            $opponent->dead();
+        }else{
+            echo "posee una cantidad de {$opponent->getHp()} pts de vida";
+        }
+        
     }
 }
 
 $atila = new Solder('Atila el Huno');
 $cid = new Solder('El Cid Campeador');
+$atila->attack($cid);
 $atila->attack($cid);
