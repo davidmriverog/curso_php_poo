@@ -1,6 +1,6 @@
 <?php
 
-class Unit 
+abstract class Unit 
 {
     /**
      * Alive.
@@ -26,10 +26,7 @@ class Unit
         echo "<p>{$this->name} avanca hacia $direction </p>";
     }
 
-    public function attack($opponent)
-    {
-        echo "<p> {$this->name} golpea  a $opponent </p>";
-    }
+    abstract public function attack($opponent);
 }
 
 class Solder extends Unit
