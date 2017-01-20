@@ -31,11 +31,6 @@ abstract class Unit
         return $this->hp;
     }
 
-    public function setHp($hp)
-    {
-        $this->hp = $hp;
-    }
-
     public function move($direction)
     {
         echo "<p>{$this->name} avanca hacia $direction </p>";
@@ -47,6 +42,19 @@ abstract class Unit
     }
 
     abstract public function attack(Unit $opponent);
+
+    public function takeDamage($damage)
+    {
+       
+        $this->hp = $this->hp - $damage;
+
+        if($this->hp <= 0){
+            // die opponent
+            $this->dead();
+        }else{
+            echo "posee una cantidad de {$this->hp} pts de vida";
+        }
+    }
 }
 
 class Solder extends Unit
@@ -62,25 +70,47 @@ class Solder extends Unit
     {
         echo "<p> {$this->name} ataca a {$opponent->getName()} </p>";
 
-        if($opponent instanceof Solder){
-            $damage = $this->damage / 2;
-        }else{
-            $damage = $this->damage;
-        }
+        $opponent->takeDamage($this->damage);
+    }
 
-        $opponent->setHp($opponent->getHp() -  $damage);
+    public function takeDamage($damage)
+    {
+        return parent::takeDamage($damage / 2);
+    }
+}
 
-        if($opponent->getHp() <= 0){
-            // die opponent
-            $opponent->dead();
-        }else{
-            echo "posee una cantidad de {$opponent->getHp()} pts de vida";
+class Archer extends Unit
+{
+    /**
+     * Damage Solder
+     * 
+     * @var integer
+     */
+    protected $damage = 20;
+
+    public function attack(Unit $opponent)
+    {
+        echo "<p> {$this->name} ataca a {$opponent->getName()} </p>";
+
+        $opponent->takeDamage($this->damage);
+    }
+
+    public function takeDamage($damage)
+    {
+        if(rand(0,1)){
+            return parent::takeDamage($damage);
         }
-        
     }
 }
 
 $atila = new Solder('Atila el Huno');
-$cid = new Solder('El Cid Campeador');
-$atila->attack($cid);
-$atila->attack($cid);
+$robin = new Archer('Robin Hood');
+
+// Atila ataca a robin
+$atila->attack($robin);
+
+// Robin ataca a Atila
+$robin->attack($atila);
+
+// Atila vuelve a atacar
+$atila->attack($robin);
