@@ -62,7 +62,13 @@ class Solder extends Unit
     {
         echo "<p> {$this->name} ataca a {$opponent->getName()} </p>";
 
-        $opponent->setHp($opponent->getHp() -  $this->damage);
+        if($opponent instanceof Solder){
+            $damage = $this->damage / 2;
+        }else{
+            $damage = $this->damage;
+        }
+
+        $opponent->setHp($opponent->getHp() -  $damage);
 
         if($opponent->getHp() <= 0){
             // die opponent
