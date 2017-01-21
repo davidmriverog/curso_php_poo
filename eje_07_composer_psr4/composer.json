@@ -1,0 +1,13 @@
+{
+    "name": "mycommunity/project",
+    "description": "My Package Community Extension",
+    "type": "project",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "David M. Rivero G.",
+            "email": "davidmriverog@gmail.com"
+        }
+    ],
+    "require": {}
+}
