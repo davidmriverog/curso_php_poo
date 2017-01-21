@@ -73,9 +73,8 @@ class Solder extends Unit
 
     protected $armor;
 
-    public function __construct($name,Armor $armor = null)
+    public function __construct($name)
     {
-        $this->setArmor($armor);
         parent::__construct($name);
     }
 
@@ -110,15 +109,36 @@ class Archer extends Unit
      */
     protected $damage = 20;
 
+    protected $armor;
+
     public function attack(Unit $opponent)
     {
         echo "<p> {$this->name} Dispara una flecha al oponente {$opponent->getName()} </p>";
 
         $opponent->takeDamage($this->damage);
     }
+
+    public function setArmor(Armor $armor = null)
+    {
+        $this->armor = $armor;
+    }
+
+    protected function absorbDamage($damage)
+    {
+        if($this->armor){
+            $damage = $this->armor->absorbDamage($damage);
+        }
+
+        return $damage;
+    }
 }
 
-class Armor 
+interface Armor
+{
+    public function absorbDamage($damage);
+}
+
+class BronzeArmor implements Armor
 {
     public function absorbDamage($damage)
     {
@@ -126,18 +146,23 @@ class Armor
     }
 }
 
-$armor = new Armor;
+class SilverArmor implements Armor 
+{
+    public function absorbDamage($damage)
+    {
+        return $damage / 3;
+    }
+}
+
+// Armor
+$bronzearmor = new BronzeArmor;
+$silverarmor = new SilverArmor;
 
 $robin = new Archer('Robin Hood');
+$robin->setArmor($silverarmor);
+
 $atila = new Solder('Atila el Huno');
-
-
-// Atila ataca a robin
-// $atila->attack($robin);
-
-// Robin ataca a Atila
-$robin->attack($atila);
-
-$atila->setArmor($armor);
+$atila->setArmor($bronzearmor);
 
 $robin->attack($atila);
+$atila->attack($robin);
