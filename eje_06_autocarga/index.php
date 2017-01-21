@@ -2,13 +2,10 @@
 
 require 'src/helpers.php';
 
-require 'src/Unit.php';
-require 'src/Soldier.php';
-require 'src/Archer.php';
-require 'src/Armor.php';
 
-require 'src/BronzeArmor.php';
-require 'src/SilverArmor.php';
+spl_autoload_register(function($className){
+    require "src/$className.php";
+}); 
 
 // Armor
 $bronzearmor = new BronzeArmor;
