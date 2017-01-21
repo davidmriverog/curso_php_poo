@@ -2,7 +2,6 @@
 
 namespace MyCommunity;
 
-require '../src/helpers.php';
 require '../vendor/autoload.php';
 
 // Armor
