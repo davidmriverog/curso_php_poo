@@ -46,8 +46,7 @@ abstract class Unit
 
     public function takeDamage($damage)
     {
-       
-        $this->hp = $this->hp - $damage;
+        $this->hp = $this->hp - $this->absorbDamage($damage);
 
         if($this->hp <= 0){
             // die opponent
@@ -55,6 +54,11 @@ abstract class Unit
         }else{
             echo "{$this->name} posee una cantidad de {$this->hp} pts de vida";
         }
+    }
+
+    protected function absorbDamage($damage)
+    {
+        return $damage;
     }
 }
 
@@ -80,13 +84,6 @@ class Solder extends Unit
         echo "<p> {$this->name} ataca a con la espada a el oponente {$opponent->getName()} </p>";
 
         $opponent->takeDamage($this->damage);
-    }
-
-    public function takeDamage($damage)
-    {
-        $damage = $this->absorbDamage($damage);
-
-        return parent::takeDamage($damage);
     }
 
     public function setArmor(Armor $armor = null)
@@ -118,13 +115,6 @@ class Archer extends Unit
         echo "<p> {$this->name} Dispara una flecha al oponente {$opponent->getName()} </p>";
 
         $opponent->takeDamage($this->damage);
-    }
-
-    public function takeDamage($damage)
-    {
-        if(rand(0,1)){
-            return parent::takeDamage($damage);
-        }
     }
 }
 
