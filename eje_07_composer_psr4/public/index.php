@@ -6,8 +6,8 @@ require '../src/helpers.php';
 require '../vendor/autoload.php';
 
 // Armor
-$bronzearmor = new BronzeArmor();
-$silverarmor = new SilverArmor();
+$bronzearmor = new Armors\BronzeArmor;
+$silverarmor = new Armors\SilverArmor;
 
 $robin = new Archer('Robin Hood');
 $robin->setArmor($silverarmor);

@@ -1,6 +1,8 @@
 <?php
 
-namespace MyCommunity;
+namespace MyCommunity\Armors;
+
+use MyCommunity\Armor;
 
 class BronzeArmor implements Armor
 {
