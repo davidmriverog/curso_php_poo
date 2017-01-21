@@ -84,10 +84,7 @@ class Solder extends Unit
 
     public function takeDamage($damage)
     {
-
-        if($this->armor){
-            $damage = $this->armor->absorbDamage($damage);
-        }
+        $damage = $this->absorbDamage($damage);
 
         return parent::takeDamage($damage);
     }
@@ -95,6 +92,15 @@ class Solder extends Unit
     public function setArmor(Armor $armor = null)
     {
         $this->armor = $armor;
+    }
+
+    protected function absorbDamage($damage)
+    {
+        if($this->armor){
+            $damage = $this->armor->absorbDamage($damage);
+        }
+
+        return $damage;
     }
 }
 
