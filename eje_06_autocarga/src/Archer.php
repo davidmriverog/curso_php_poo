@@ -2,6 +2,8 @@
 
 namespace MyCommunity;
 
+use Warcraft\Armor;
+
 class Archer extends Unit
 {
     /**

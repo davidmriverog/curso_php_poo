@@ -3,8 +3,11 @@
 namespace MyCommunity;
 
 require 'src/helpers.php';
+require 'vendor/Armor.php';
 
 spl_autoload_register(function($className){
+
+    // show("Intentando cargar {$className}");
 
     if(strpos($className,'MyCommunity\\') === 0){
 

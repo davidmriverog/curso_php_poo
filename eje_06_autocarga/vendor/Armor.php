@@ -1,6 +1,6 @@
 <?php
 
-namespace MyCommunity;
+namespace Warcraft;
 
 interface Armor
 {
