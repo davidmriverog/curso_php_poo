@@ -38,7 +38,8 @@ abstract class Unit
 
     public function dead()
     {
-        echo "<p> {$this->name} muere</p>";
+        echo "<p> {$this->name} muere Fin del juego...</p>";
+        exit();
     }
 
     abstract public function attack(Unit $opponent);
@@ -52,7 +53,7 @@ abstract class Unit
             // die opponent
             $this->dead();
         }else{
-            echo "posee una cantidad de {$this->hp} pts de vida";
+            echo "{$this->name} posee una cantidad de {$this->hp} pts de vida";
         }
     }
 }
@@ -68,9 +69,9 @@ class Solder extends Unit
 
     protected $armor;
 
-    public function __construct($name,$armor = 2)
+    public function __construct($name,Armor $armor = null)
     {
-        $this->armor = $armor;
+        $this->setArmor($armor);
         parent::__construct($name);
     }
 
@@ -83,7 +84,17 @@ class Solder extends Unit
 
     public function takeDamage($damage)
     {
-        return parent::takeDamage($damage / $this->armor);
+
+        if($this->armor){
+            $damage = $this->armor->absorbDamage($damage);
+        }
+
+        return parent::takeDamage($damage);
+    }
+
+    public function setArmor(Armor $armor = null)
+    {
+        $this->armor = $armor;
     }
 }
 
@@ -119,12 +130,18 @@ class Armor
     }
 }
 
+$armor = new Armor;
+
 $robin = new Archer('Robin Hood');
-$atila = new Solder('Atila el Huno',4);
+$atila = new Solder('Atila el Huno');
 
 
 // Atila ataca a robin
 // $atila->attack($robin);
 
 // Robin ataca a Atila
+$robin->attack($atila);
+
+$atila->setArmor($armor);
+
 $robin->attack($atila);
