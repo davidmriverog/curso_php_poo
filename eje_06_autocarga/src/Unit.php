@@ -1,5 +1,7 @@
 <?php
 
+namespace MyCommunity;
+
 abstract class Unit 
 {
     /**
