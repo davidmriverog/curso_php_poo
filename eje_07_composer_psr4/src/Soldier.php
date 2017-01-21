@@ -2,8 +2,6 @@
 
 namespace MyCommunity;
 
-use Warcraft\Armor as WarcraftArmor;
-
 class Soldier extends Unit
 {
     /**
@@ -27,7 +25,7 @@ class Soldier extends Unit
         $opponent->takeDamage($this->damage);
     }
 
-    public function setArmor(WarcraftArmor $armor = null)
+    public function setArmor(Armor $armor = null)
     {
         $this->armor = $armor;
     }
