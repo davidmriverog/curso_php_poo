@@ -8,8 +8,5 @@ class CrossBow extends Weapon
 {
     protected $damage = 40;
 
-    public function getMessages(Unit $attacker,Unit $victim)
-    {
-        return showAttach($attacker->getName(),$victim->getName(),'dispara una flecha a ');
-    }
+    protected $description = ':unit dispara una flecha potente a :opponent';
 }

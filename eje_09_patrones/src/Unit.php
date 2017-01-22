@@ -6,20 +6,10 @@ use MyCommunity\Weapons\Weapon;
 
 class Unit 
 {
-    /**
-     * Alive.
-     * 
-     * @var boolean
-     */
+
     protected $hp = 40;
     
-    /**
-     * Name Unit.
-     *  
-     * @var string
-     */
     protected $name;
-
 
     protected $armor;
 
@@ -67,9 +57,9 @@ class Unit
         $opponent->takeDamage($attack);
     }
 
-    public function takeDamage($damage)
+    public function takeDamage(Attack $attack)
     {
-        $this->hp = $this->hp - $this->absorbDamage($damage);
+        $this->hp = $this->hp - $this->absorbDamage($attack);
 
         if($this->hp <= 0){
             // die opponent
@@ -79,12 +69,12 @@ class Unit
         }
     }
 
-    protected function absorbDamage($damage)
+    protected function absorbDamage(Attack $attack)
     {
         if($this->armor){
-            $damage = $this->armor->absorbDamage($damage);
+            return $this->armor->absorbDamage($attack);
+        }else{
+            return $attack->getDamage();
         }
-
-        return $damage;
     }
 }

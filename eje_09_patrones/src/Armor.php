@@ -4,5 +4,5 @@ namespace MyCommunity;
 
 interface Armor
 {
-    public function absorbDamage($damage);
+    public function absorbDamage(Attack $damage);
 }
