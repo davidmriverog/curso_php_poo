@@ -18,12 +18,19 @@ abstract class Unit
      */
     protected $name;
 
-    
+
     protected $armor;
 
-    public function __construct($name)
+    protected $damage = 20;
+
+
+    public function __construct($name, $damage = null)
     {
         $this->name = $name;
+
+        if($damage){
+            $this->damage = $damage;
+        }
     }
 
     public function getName()
