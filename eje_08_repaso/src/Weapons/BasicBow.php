@@ -3,8 +3,9 @@
 namespace MyCommunity\Weapons;
 
 use MyCommunity\Unit;
+use MyCommunity\Weapons\Bow;
 
-class BasicBow extends Weapon
+class BasicBow extends Bow
 {
     protected $damage = 20;
 
