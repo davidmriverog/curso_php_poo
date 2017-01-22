@@ -4,7 +4,7 @@ namespace MyCommunity;
 
 use MyCommunity\Weapons\Weapon;
 
-abstract class Unit 
+class Unit 
 {
     /**
      * Alive.
@@ -60,9 +60,11 @@ abstract class Unit
 
     public function attack(Unit $opponent)
     {
-        $this->weapon->getMessages($this,$opponent);
+        $attack = $this->weapon->createAttack();
 
-        $opponent->takeDamage($this->weapon->getDamage());
+        show($this->weapon->getDescription($this,$opponent));
+
+        $opponent->takeDamage($attack);
     }
 
     public function takeDamage($damage)

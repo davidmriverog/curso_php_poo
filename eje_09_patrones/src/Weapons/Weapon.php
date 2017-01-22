@@ -3,15 +3,28 @@
 namespace MyCommunity\Weapons;
 
 use MyCommunity\Unit;
+use MyCommunity\Attack;
 
 abstract class Weapon
 {
+
     protected $damage = 0;
 
-    public function getDamage()
+    protected $majical = false;
+
+    protected $description = ":unit ataca a :opponent";
+
+    public function createAttack()
     {
-        return $this->damage;
+        return new Attack($this->damage,$this->majical,$this->description);
     }
 
-    abstract public function getMessages(Unit $attacker,Unit $victim);
+    public function getDescription(Unit $attacker,Unit $victim)
+    {
+        return str_replace(
+            [':unit',':opponent'],
+            [$attacker->getName(),$victim->getName()],
+            $this->description
+        );
+    }
 }
