@@ -2,28 +2,18 @@
 
 class Person
 {
-    protected static $firstName;
-
-    public static $name = 'Invitado';
+    protected $name;
 
     public function __construct($firstName)
     {
-        static::$firstName = $firstName;
+        $this->name = $firstName;
     }
 
     public function getFirstName()
     {
-        return static::$firstName;
-    }
-
-    public static function name()
-    {
-        return static::$name;
+        return $this->name;
     }
 }
-
-// exit(Person::$name);
-exit(Person::name());
 
 $david = new Person('David Rivero');
 $miguel = new Person('Miguel Rivero');
