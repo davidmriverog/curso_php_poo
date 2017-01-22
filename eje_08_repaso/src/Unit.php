@@ -2,6 +2,8 @@
 
 namespace MyCommunity;
 
+use MyCommunity\Weapons\Weapon;
+
 abstract class Unit 
 {
     /**
@@ -21,16 +23,13 @@ abstract class Unit
 
     protected $armor;
 
-    protected $damage = 20;
+    protected $weapon;
 
-
-    public function __construct($name, $damage = null)
+    public function __construct($name, Weapon $weapon)
     {
         $this->name = $name;
 
-        if($damage){
-            $this->damage = $damage;
-        }
+        $this->weapon = $weapon;
     }
 
     public function getName()
@@ -59,7 +58,12 @@ abstract class Unit
         exit();
     }
 
-    abstract public function attack(Unit $opponent);
+    public function attack(Unit $opponent)
+    {
+        showAttach($this->name,$opponent->getName());
+
+        $opponent->takeDamage($this->weapon->getDamage());
+    }
 
     public function takeDamage($damage)
     {
