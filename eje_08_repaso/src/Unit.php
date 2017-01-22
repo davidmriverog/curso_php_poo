@@ -18,6 +18,9 @@ abstract class Unit
      */
     protected $name;
 
+    
+    protected $armor;
+
     public function __construct($name)
     {
         $this->name = $name;
@@ -31,6 +34,11 @@ abstract class Unit
     public function getHp()
     {
         return $this->hp;
+    }
+
+    public function setArmor(Armor $armor = null)
+    {
+        $this->armor = $armor;
     }
 
     public function move($direction)
@@ -60,6 +68,10 @@ abstract class Unit
 
     protected function absorbDamage($damage)
     {
+        if($this->armor){
+            $damage = $this->armor->absorbDamage($damage);
+        }
+
         return $damage;
     }
 }
