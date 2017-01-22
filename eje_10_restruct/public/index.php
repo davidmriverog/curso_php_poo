@@ -20,4 +20,5 @@ $atila = new Unit('Atila el Huno',new BasicSword);
 $atila->setArmor($bronzearmor);
 
 $robin->attack($atila);
+$atila->attack($robin);
 

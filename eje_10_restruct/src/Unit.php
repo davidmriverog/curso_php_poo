@@ -3,6 +3,7 @@
 namespace MyCommunity;
 
 use MyCommunity\Weapons\Weapon;
+use MyCommunity\Armors\MissingArmor;
 
 class Unit 
 {
@@ -18,8 +19,8 @@ class Unit
     public function __construct($name, Weapon $weapon)
     {
         $this->name = $name;
-
         $this->weapon = $weapon;
+        $this->armor = new MissingArmor;
     }
 
     public function getName()
@@ -71,10 +72,6 @@ class Unit
 
     protected function absorbDamage(Attack $attack)
     {
-        if($this->armor){
-            return $this->armor->absorbDamage($attack);
-        }else{
-            return $attack->getDamage();
-        }
+        return $this->armor->absorbDamage($attack);
     }
 }

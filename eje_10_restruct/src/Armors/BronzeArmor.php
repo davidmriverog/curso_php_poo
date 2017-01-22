@@ -5,9 +5,14 @@ namespace MyCommunity\Armors;
 use MyCommunity\Armor;
 use MyCommunity\Attack;
 
-class BronzeArmor implements Armor
+class BronzeArmor extends Armor
 {
-    public function absorbDamage(Attack $attack)
+    public function absorbPhysicalDamage(Attack $attack)
+    {
+        return $attack->getDamage() / 2;
+    }
+
+    public function absorbMagicalDamage(Attack $attack)
     {
         return $attack->getDamage() / 2;
     }
