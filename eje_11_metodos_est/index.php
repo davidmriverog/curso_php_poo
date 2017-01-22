@@ -4,6 +4,8 @@ class Person
 {
     protected static $firstName;
 
+    public static $name = 'Invitado';
+
     public function __construct($firstName)
     {
         static::$firstName = $firstName;
@@ -13,7 +15,15 @@ class Person
     {
         return static::$firstName;
     }
+
+    public static function name()
+    {
+        return static::$name;
+    }
 }
+
+// exit(Person::$name);
+exit(Person::name());
 
 $david = new Person('David Rivero');
 $miguel = new Person('Miguel Rivero');
