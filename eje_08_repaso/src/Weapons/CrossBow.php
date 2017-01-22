@@ -4,9 +4,9 @@ namespace MyCommunity\Weapons;
 
 use MyCommunity\Unit;
 
-class BasicBow extends Weapon
+class CrossBow extends Weapon
 {
-    protected $damage = 20;
+    protected $damage = 80;
 
     public function getMessages(Unit $attacker,Unit $victim)
     {

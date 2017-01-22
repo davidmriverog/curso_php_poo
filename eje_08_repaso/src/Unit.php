@@ -60,7 +60,7 @@ abstract class Unit
 
     public function attack(Unit $opponent)
     {
-        showAttach($this->name,$opponent->getName());
+        $this->weapon->getMessages($this,$opponent);
 
         $opponent->takeDamage($this->weapon->getDamage());
     }
