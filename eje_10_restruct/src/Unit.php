@@ -60,7 +60,7 @@ class Unit
 
     public function takeDamage(Attack $attack)
     {
-        $this->hp = $this->hp - $this->absorbDamage($attack);
+        $this->hp = $this->hp - $this->armor->absorbDamage($attack);
 
         if($this->hp <= 0){
             // die opponent
@@ -68,10 +68,5 @@ class Unit
         }else{
             echo "{$this->name} posee una cantidad de {$this->hp} pts de vida";
         }
-    }
-
-    protected function absorbDamage(Attack $attack)
-    {
-        return $this->armor->absorbDamage($attack);
     }
 }
