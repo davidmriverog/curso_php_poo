@@ -6,7 +6,7 @@ class Person
 
     protected static $database = 'mysql';
 
-    public static $table = 'person';
+    public $table = 'person';
 
     public function __construct($firstName)
     {
@@ -20,14 +20,17 @@ class Person
 
     public function save()
     {
-        echo "Saving {$this->name} in the table ". static::$table . "<br>";
+        echo "Saving {$this->name} in the table ". $this->table . "<br>";
     }
 }
 
+// Person::$table = 'personas';
+
 $david = new Person('David Rivero');
+$david->table = 'people';
 $david->save();
 
-Person::$table = 'personas';
+
 
 $miguel = new Person('Miguel Rivero');
 $miguel->save();
