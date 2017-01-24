@@ -4,12 +4,7 @@ namespace MyCommunity;
 
 class Translator
 {
-    protected static $messages = [
-        'BasicBowAttack'=>':unit dispara una flecha a :opponent',
-        'BasicSwordAttack'=>':unit ataca con la espada a :opponent',
-        'CrossBowAttack' => ':unit dispara una flecha potente a :opponent',
-        'FireBowAttack' => ':unit dispara una flecha de  fuego a :opponent'
-    ];
+    protected static $messages = [];
 
     public static function get($key,array $params=array())
     {
@@ -18,6 +13,11 @@ class Translator
         }
 
         return static::replaceParams(static::$messages[$key],$params);
+    }
+
+    public static function set(array $messages)
+    {
+        static::$messages = $messages;
     }
 
     public static function has($key)
