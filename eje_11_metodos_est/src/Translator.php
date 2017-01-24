@@ -8,18 +8,16 @@ class Translator
 
     public static function get($key,array $params=array())
     {
-        // 
         if (!$this->has($key)) {
             return "[$key]";
         }
 
-        // 
-        
+        return $this->replaceParams(static::$messages[$key],$params);
     }
 
     public static function has($key)
     {
-        return isset(static::$message[$key]);
+        return isset(static::$messages[$key]);
     }
 
     public static function replaceParams($message, array $params)
