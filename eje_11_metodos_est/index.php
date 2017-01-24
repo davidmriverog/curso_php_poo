@@ -4,6 +4,10 @@ class Person
 {
     protected $name;
 
+    protected static $database = 'mysql';
+
+    public static $table = 'person';
+
     public function __construct($firstName)
     {
         $this->name = $firstName;
@@ -13,10 +17,17 @@ class Person
     {
         return $this->name;
     }
+
+    public function save()
+    {
+        echo "Saving {$this->name} in the table ". static::$table . "<br>";
+    }
 }
 
 $david = new Person('David Rivero');
-$miguel = new Person('Miguel Rivero');
+$david->save();
 
-echo "Hola Sr(a). {$david->getFirstName()} <br>";
-echo "Hola Sr(a). {$miguel->getFirstName()} <br>";
+Person::$table = 'personas';
+
+$miguel = new Person('Miguel Rivero');
+$miguel->save();
