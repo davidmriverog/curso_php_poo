@@ -12,19 +12,13 @@ abstract class Weapon
 
     protected $majical = false;
 
-    protected $description = ":unit ataca a :opponent";
-
     public function createAttack()
     {
-        return new Attack($this->damage,$this->majical,$this->description);
+        return new Attack($this->damage,$this->majical,$this->getDescriptionKey());
     }
 
-    public function getDescription(Unit $attacker,Unit $victim)
+    protected function getDescriptionKey()
     {
-        return str_replace(
-            [':unit',':opponent'],
-            [$attacker->getName(),$victim->getName()],
-            $this->description
-        );
+        return str_replace('MyCommunity\Weapons\\', '',get_class($this)).'Attack';
     }
 }

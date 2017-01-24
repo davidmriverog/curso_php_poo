@@ -53,7 +53,7 @@ class Unit
     {
         $attack = $this->weapon->createAttack();
 
-        show($this->weapon->getDescription($this,$opponent));
+        show($attack->getDescription($this, $opponent));
 
         $opponent->takeDamage($attack);
     }

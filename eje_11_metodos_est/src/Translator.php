@@ -4,15 +4,20 @@ namespace MyCommunity;
 
 class Translator
 {
-    protected static $messages = [];
+    protected static $messages = [
+        'BasicBowAttack'=>':unit dispara una flecha a :opponent',
+        'BasicSwordAttack'=>':unit ataca con la espada a :opponent',
+        'CrossBowAttack' => ':unit dispara una flecha potente a :opponent',
+        'FireBowAttack' => ':unit dispara una flecha de  fuego a :opponent'
+    ];
 
     public static function get($key,array $params=array())
     {
-        if (!$this->has($key)) {
+        if (!static::has($key)) {
             return "[$key]";
         }
 
-        return $this->replaceParams(static::$messages[$key],$params);
+        return static::replaceParams(static::$messages[$key],$params);
     }
 
     public static function has($key)
