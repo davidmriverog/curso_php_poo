@@ -77,7 +77,7 @@ class Unit
     {
         $attack = $this->weapon->createAttack();
 
-        HtmlLogger::info($attack->getDescription($this, $opponent));
+        FileLogger::info($attack->getDescription($this, $opponent));
 
         $opponent->takeDamage($attack);
     }
@@ -90,7 +90,7 @@ class Unit
             // die opponent
             $this->dead();
         }else{
-            echo "{$this->name} posee una cantidad de {$this->hp} pts de vida";
+            HtmlLogger::info("{$this->name} posee una cantidad de {$this->hp} pts de vida");
         }
     }
 }
