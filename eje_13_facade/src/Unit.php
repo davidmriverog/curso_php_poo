@@ -63,12 +63,13 @@ class Unit
 
     public function move($direction)
     {
-        echo "<p>{$this->name} avanca hacia $direction </p>";
+        HtmlLogger::info("{$this->name} avanca hacia $direction ");
     }
 
     public function dead()
     {
-        echo "<p> {$this->name} muere Fin del juego...</p>";
+        HtmlLogger::info("{$this->name} muere Fin del juego...");
+        
         exit();
     }
 
@@ -76,7 +77,7 @@ class Unit
     {
         $attack = $this->weapon->createAttack();
 
-        show($attack->getDescription($this, $opponent));
+        HtmlLogger::info($attack->getDescription($this, $opponent));
 
         $opponent->takeDamage($attack);
     }
