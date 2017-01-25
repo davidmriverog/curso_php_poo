@@ -21,8 +21,10 @@ $silverarmor = new Armors\SilverArmor;
 $robin = new Unit('Robin Hood',new FireBow);
 $robin->setArmor($silverarmor);
 
-$atila = new Unit('Atila el Huno',new BasicSword);
-$atila->setArmor($bronzearmor);
+$atila = Unit::createSoldier()
+            ->setArmor($bronzearmor)
+            ->setWeapon(new BasicSword)
+            ->setShield();
 
 $robin->attack($atila);
 $atila->attack($robin);

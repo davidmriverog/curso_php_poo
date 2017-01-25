@@ -4,6 +4,8 @@ namespace MyCommunity;
 
 use MyCommunity\Weapons\Weapon;
 use MyCommunity\Armors\MissingArmor;
+use MyCommunity\Weapons\BasicSword;
+use MyCommunity\Armors\BronzeArmor;
 
 class Unit 
 {
@@ -23,6 +25,13 @@ class Unit
         $this->armor = new MissingArmor;
     }
 
+    public function createSoldier()
+    {
+        $soldier = new Unit('Atila el H',new BasicSword);
+
+        return $soldier;
+    }
+
     public function getName()
     {
         return $this->name;
@@ -36,6 +45,20 @@ class Unit
     public function setArmor(Armor $armor = null)
     {
         $this->armor = $armor;
+
+        return $this;
+    }
+
+    public function setWeapon(Weapon $weapon)
+    {
+        $this->weapon = $weapon;
+
+        return $this;
+    }
+
+    public function setShield()
+    {
+        return $this;
     }
 
     public function move($direction)
