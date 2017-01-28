@@ -4,7 +4,7 @@ namespace MyCommunity;
 
 class HtmlLogger
 {
-    public static function info($message)
+    public function info($message)
     {
         echo "<p> {$message} </p>";
     }

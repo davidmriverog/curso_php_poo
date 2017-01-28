@@ -18,11 +18,14 @@ class Unit
 
     protected $weapon;
 
-    public function __construct($name, Weapon $weapon)
+    protected $logger;
+
+    public function __construct($name, Weapon $weapon,$logger=null)
     {
         $this->name = $name;
         $this->weapon = $weapon;
         $this->armor = new MissingArmor;
+        $this->logger = $logger;
     }
 
     public function createSoldier()
@@ -49,6 +52,13 @@ class Unit
         return $this;
     }
 
+    public function setLogger($logger)
+    {
+        $this->logger = $logger;
+
+        return $this;
+    }
+
     public function setWeapon(Weapon $weapon)
     {
         $this->weapon = $weapon;
@@ -63,12 +73,12 @@ class Unit
 
     public function move($direction)
     {
-        HtmlLogger::info("{$this->name} avanca hacia $direction ");
+        $this->logger->info("{$this->name} avanca hacia $direction ");
     }
 
     public function dead()
     {
-        HtmlLogger::info("{$this->name} muere Fin del juego...");
+        $this->logger->info("{$this->name} muere Fin del juego...");
         
         exit();
     }
@@ -77,7 +87,7 @@ class Unit
     {
         $attack = $this->weapon->createAttack();
 
-        FileLogger::info($attack->getDescription($this, $opponent));
+        $this->logger->info($attack->getDescription($this, $opponent));
 
         $opponent->takeDamage($attack);
     }
@@ -90,7 +100,7 @@ class Unit
             // die opponent
             $this->dead();
         }else{
-            HtmlLogger::info("{$this->name} posee una cantidad de {$this->hp} pts de vida");
+            $this->logger->info("{$this->name} posee una cantidad de {$this->hp} pts de vida");
         }
     }
 }

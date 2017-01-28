@@ -1,1 +1,6 @@
-(2017-01-24 21:36:55 ) Robin Hood dispara una flecha de  fuego  a Atila el H\n(2017-01-24 21:36:55 ) Atila el H ataca con la espada a Robin Hood\n
+(2017-01-24 21:36:55 ) Robin Hood dispara una flecha de  fuego  a Atila el H\n(2017-01-24 21:36:55 ) Atila el H ataca con la espada a Robin Hood\n(2017-01-24 21:40:11 )Robin Hood dispara una flecha de  fuego  a Atila el H
+(2017-01-24 21:40:11 )Atila el H ataca con la espada a Robin Hood
+(2017-01-28 09:37:01 ) Robin Hood dispara una flecha de  fuego  a Atila el H
+(2017-01-28 09:37:01 ) Atila el H posee una cantidad de 25 pts de vida
+(2017-01-28 09:37:01 ) Atila el H ataca con la espada a Robin Hood
+(2017-01-28 09:37:01 ) Robin Hood posee una cantidad de 26.666666666667 pts de vida
