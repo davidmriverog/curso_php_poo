@@ -5,7 +5,8 @@ namespace MyCommunity;
 require '../vendor/autoload.php';
 
 $user = new User([
-    'full_name'=>'David Miguel Rivero Guite'
+    'first_name'=>'David',
+    'last_name'=>'Rivero'
 ]);
 
-echo "Sr. {$user->full_name}";
+echo "Sr. {$user->first_name} - {$user->last_name}";

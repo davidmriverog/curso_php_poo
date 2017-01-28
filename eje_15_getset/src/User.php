@@ -4,10 +4,15 @@ namespace MyCommunity;
 
 class User
 {
+    protected $attributes = [];
+
     public function __construct(array $attributes=[])
     {
-        foreach ($attributes as $key => $value) {
-            $this->$key = $value;
-        }
+        $this->attributes = $attributes;
+    }
+
+    public function __get($name)
+    {
+        return "[$name]";
     }
 }
