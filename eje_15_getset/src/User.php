@@ -13,6 +13,6 @@ class User
 
     public function __get($name)
     {
-        return "[$name]";
+        return isset($this->attributes[$name]) ? $this->attributes[$name] : NULL;
     }
 }
