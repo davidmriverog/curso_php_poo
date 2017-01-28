@@ -9,6 +9,7 @@ use MyCommunity\Armors\BronzeArmor;
 
 class Unit 
 {
+    const PROJECT = 'Course';
 
     protected $hp = 40;
     
