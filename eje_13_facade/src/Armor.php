@@ -7,6 +7,8 @@ abstract class Armor
     public function absorbDamage(Attack $attack)
     {
         if($attack->isPhysical()){
+
+            Log::info('Absorbing Damage...');
             return $this->absorbPhysicalDamage($attack);
         }
 

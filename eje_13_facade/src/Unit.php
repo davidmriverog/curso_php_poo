@@ -18,14 +18,11 @@ class Unit
 
     protected $weapon;
 
-    protected $logger;
-
-    public function __construct($name, Weapon $weapon,$logger=null)
+    public function __construct($name, Weapon $weapon)
     {
         $this->name = $name;
         $this->weapon = $weapon;
         $this->armor = new MissingArmor;
-        $this->logger = $logger;
     }
 
     public function createSoldier()
@@ -52,13 +49,6 @@ class Unit
         return $this;
     }
 
-    public function setLogger($logger)
-    {
-        $this->logger = $logger;
-
-        return $this;
-    }
-
     public function setWeapon(Weapon $weapon)
     {
         $this->weapon = $weapon;
@@ -73,12 +63,12 @@ class Unit
 
     public function move($direction)
     {
-        $this->logger->info("{$this->name} avanca hacia $direction ");
+        Log::info("{$this->name} avanca hacia $direction ");
     }
 
     public function dead()
     {
-        $this->logger->info("{$this->name} muere Fin del juego...");
+        Log::info("{$this->name} muere Fin del juego...");
         
         exit();
     }
@@ -87,7 +77,7 @@ class Unit
     {
         $attack = $this->weapon->createAttack();
 
-        $this->logger->info($attack->getDescription($this, $opponent));
+        Log::info($attack->getDescription($this, $opponent));
 
         $opponent->takeDamage($attack);
     }
@@ -100,7 +90,7 @@ class Unit
             // die opponent
             $this->dead();
         }else{
-            $this->logger->info("{$this->name} posee una cantidad de {$this->hp} pts de vida");
+            Log::info("{$this->name} posee una cantidad de {$this->hp} pts de vida");
         }
     }
 }

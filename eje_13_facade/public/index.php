@@ -18,15 +18,14 @@ Translator::set([
 $bronzearmor = new Armors\BronzeArmor;
 $silverarmor = new Armors\SilverArmor;
 
-$logger = new FileLogger;
+Log::setLogger(new HtmlLogger());
 
-$robin = new Unit('Robin Hood',new FireBow,$logger);
+$robin = new Unit('Robin Hood',new FireBow);
 $robin->setArmor($silverarmor);
 
 $atila = Unit::createSoldier()
     ->setArmor($bronzearmor)
     ->setWeapon(new BasicSword)
-    ->setLogger($logger)
     ->setShield();
 
 $robin->attack($atila);
