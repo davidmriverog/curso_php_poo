@@ -9,6 +9,7 @@ use MyCommunity\Armors\BronzeArmor;
 
 class Unit 
 {
+    const MAX_DAMAGE = 100;
 
     protected $hp = 40;
     
@@ -40,6 +41,16 @@ class Unit
     public function getHp()
     {
         return $this->hp;
+    }
+
+    public function setHp($damage)
+    {
+
+        if($damage > static::MAX_DAMAGE){
+            $damage = static::MAX_DAMAGE;
+        }
+
+        $this->hp = $this->hp - $damage;
     }
 
     public function setArmor(Armor $armor = null)
@@ -85,13 +96,9 @@ class Unit
     public function takeDamage(Attack $attack)
     {
 
-        $damage = $this->armor->absorbDamage($attack);
-
-        if($damage > 10){
-            $damage = 10;
-        }
-
-        $this->hp = $this->hp - $damage;
+        $this->setHp(
+            $this->armor->absorbDamage($attack)
+        );
 
         if($this->hp <= 0){
             // die opponent
