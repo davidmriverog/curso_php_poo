@@ -2,9 +2,10 @@
 
 namespace MyCommunity;
 
+use MyCommunity\Utils\Logger;
+
 class Log
 {
-
     protected static $logger;
 
     public static function info($message)
@@ -12,7 +13,7 @@ class Log
         static::$logger->info($message);
     }
 
-    public static function setLogger($logger)
+    public static function setLogger(Logger $logger)
     {
         static::$logger = $logger;
     }
