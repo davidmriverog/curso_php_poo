@@ -5,6 +5,7 @@ namespace MyCommunity;
 use MyCommunity\Weapons\BasicBow;
 use MyCommunity\Weapons\BasicSword;
 use MyCommunity\Weapons\FireBow;
+use MyCommunity\Utils\HtmlLogger;
 
 require '../vendor/autoload.php';
 

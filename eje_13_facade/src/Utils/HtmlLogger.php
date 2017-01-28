@@ -1,8 +1,8 @@
 <?php
 
-namespace MyCommunity;
+namespace MyCommunity\Utils;
 
-class HtmlLogger
+class HtmlLogger implements Logger
 {
     public function info($message)
     {
