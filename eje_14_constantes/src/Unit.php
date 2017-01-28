@@ -9,7 +9,6 @@ use MyCommunity\Armors\BronzeArmor;
 
 class Unit 
 {
-    const PROJECT = 'Course';
 
     protected $hp = 40;
     
@@ -85,7 +84,14 @@ class Unit
 
     public function takeDamage(Attack $attack)
     {
-        $this->hp = $this->hp - $this->armor->absorbDamage($attack);
+
+        $damage = $this->armor->absorbDamage($attack);
+
+        if($damage > 10){
+            $damage = 10;
+        }
+
+        $this->hp = $this->hp - $damage;
 
         if($this->hp <= 0){
             // die opponent

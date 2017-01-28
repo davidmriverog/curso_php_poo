@@ -9,7 +9,6 @@ use MyCommunity\Utils\HtmlLogger;
 
 require '../vendor/autoload.php';
 
-exit(Unit::PROJECT);
 
 Translator::set([
     'BasicBowAttack'=>':unit dispara una flecha a :opponent',
