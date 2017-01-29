@@ -2,6 +2,8 @@
 
 namespace MyCommunity;
 
+use MyCommunity\Utils\Str;
+
 abstract class Model
 {
     protected $attributes = [];
@@ -14,6 +16,15 @@ abstract class Model
     public function getAttribute($name)
     {
         $value = $this->getAttributeValue($name);
+
+        $method = 'get'.Str::studly($name).'Attribute';
+
+        // exit($method);
+        // exit(method_exists($this, $method));
+        
+        if (method_exists($this, $method)) {
+            $this->$method($value);
+        }
 
         return $value;
     }
