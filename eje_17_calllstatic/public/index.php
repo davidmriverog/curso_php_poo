@@ -38,4 +38,4 @@ $oneClass = new OneClass;
 
 // $oneClass->oneFunction('Hello GoodBye','The Beatles');
 
-OneClass::yellowSubmarine();
+OneClass::yellowSubmarine('Misery','No Reply');
