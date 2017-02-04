@@ -11,4 +11,4 @@ $inputform = new HtmlNode('input',[
     'type'=>'text'
 ]);
 
-echo "{$inputform->render()}";
+echo $inputform->render();
