@@ -16,20 +16,25 @@ abstract class Model
     public function getAttribute($name)
     {
         $value = $this->getAttributeValue($name);
-
-        $method = 'get'.Str::studly($name).'Attribute';
-
-        // exit($method);
-        // exit(method_exists($this, $method));
         
-        if (method_exists($this, $method)) {
-            $this->$method($value);
+        if ($this->hasGetMutator($name)) {
+           $this->mutateAttribute($name,$value);
         }
 
         return $value;
     }
 
-    public function getAttributeValue($name)
+    protected function mutateAttribute($name,$value)
+    {
+        return  $this->{'get'.Str::studly($name).'Attribute'}($value);
+    }
+
+    protected function hasGetMutator($name)
+    {
+        return method_exists($this,'get'.Str::studly($name).'Attribute');
+    }
+
+    protected function getAttributeValue($name)
     {
         if(array_key_exists($name,$this->attributes)){
             return $this->attributes[$name];
